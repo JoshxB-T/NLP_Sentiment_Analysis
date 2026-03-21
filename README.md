@@ -1,8 +1,18 @@
-## ANN
-### 1. Implementation (on methods)
+# ANN
+## 1. Implementation (on methods)
+### Data Loading
+Load dev, train, and test datasets.
+
+### Preprocessing
+Converted all text into lowercase and trimmed leading/trailing whitespace. 
+
+### Encoding / Feature Engineering
+### Model Architecture
+### Training Procedure
+### Evaluation
 
 
-### 2. Results (on dev set)
+## 2. Results (on dev set)
 ```Bash
 ******** Regression Metrics ********
 Emotion Mean Square Error:  0.5670906901359558
@@ -20,17 +30,36 @@ Empathy Mean Square Error:  0.7678810358047485
 weighted avg       0.63      0.62      0.60       990
 ```
 
-### 3. Notes (preprocessing/model choices)
-Removed NaNs, normalized letter casing, and trimmed any whitespace surrounding text.
-
-### 4. How to Run
+## 3. Notes (preprocessing/model choices)
 
 
-## RNN
-### 1. Implementation (on methods)
+## 4. How to Run
 
 
-### 2. Results (on dev set)
+# RNN
+## 1. Implementation (on methods)
+### Encoding / Feature Engineering
+A vocabulary is constructed from the training dataset using token frequency counts. Each unique word is assigned a unique integer index, with special tokens for padding (`<PAD> = 0`) and unknown words (`<UNK> = 1`).
+
+Input text is tokenized by splitting on whitespace and converted into sequences of integer IDs. All sequences are padded or truncated to a fixed length of 50 tokens to ensure consistent input size for the model.
+
+### Model Architecture
+The model is a multi-task bidirectional GRU-based neural network. Input sequences are first passed through an embedding layer (dimension 100), followed by a bidirectional GRU with a hidden size of 128.
+
+The final hidden states from both directions are concatenated and passed through a shared fully connected layer. The network then branches into three task-specific output heads:
+- Emotion regression (MSE loss)
+- Empathy regression (MSE loss)
+- Emotional polarity classification (CrossEntropy loss)
+
+### Training Procedure
+The model is trained using the Adam optimizer with a learning rate of 1e-3. A multi-task loss function is used, combining mean squared error for regression tasks and cross-entropy loss for classification.
+
+Training is performed over 80 epochs with a batch size of 64. The dataset is shuffled during training.
+
+### Evaluation
+Regression performance is measured using Mean Absolute Error (MAE). Classification performance is evaluated using precision, recall, and F1-score.
+
+## 2. Results (on dev set)
 ```Bash
 ******** Regression Metrics ********
 Emotion Mean Square Error:  0.6293336101971412
@@ -48,7 +77,11 @@ Empathy Mean Square Error:  0.6799753016453804
 weighted avg       0.62      0.62      0.62      1109
 ```
 
-### 3. Notes (preprocessing/model choices)
-Removed NaNs, normalized letter casing, and trimmed any whitespace surrounding text.
+## 3. Notes (preprocessing/model choices)
+Converted all text into lowercase and trimmed leading/trailing whitespace. 
 
-### 4. How to Run
+## 4. How to Run
++ Import RNN.ipynb into Google Colab
++ Create a data/ directory
++ Upload trac2_CONVT_[dev | test | train].csv files and move into data/
++ Press Run all
