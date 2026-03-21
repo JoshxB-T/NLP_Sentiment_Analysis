@@ -21,7 +21,7 @@ weighted avg       0.63      0.62      0.60       990
 ```
 
 ### 3. Notes (preprocessing/model choices)
-Performed a basic lowercase and strip 
+Removed NaNs, normalized letter casing, and trimmed any whitespace surrounding text.
 
 ### 4. How to Run
 
@@ -49,6 +49,6 @@ weighted avg       0.62      0.62      0.62      1109
 ```
 
 ### 3. Notes (preprocessing/model choices)
-
+Removed NaNs, normalized letter casing, and trimmed any whitespace surrounding text.
 
 ### 4. How to Run
