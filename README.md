@@ -3,10 +3,25 @@
 
 
 ### 2. Results (on dev set)
+```Bash
+******** Regression Metrics ********
+Emotion Mean Square Error:  0.5670906901359558
+Empathy Mean Square Error:  0.7678810358047485
 
+******** Classification Metrics ********
+              precision    recall  f1-score   support
+
+           0       0.69      0.24      0.36       170
+           1       0.61      0.69      0.65       461
+           2       0.63      0.71      0.67       359
+
+    accuracy                           0.62       990
+   macro avg       0.64      0.55      0.56       990
+weighted avg       0.63      0.62      0.60       990
+```
 
 ### 3. Notes (preprocessing/model choices)
-
+Performed a basic lowercase and strip 
 
 ### 4. How to Run
 
