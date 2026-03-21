@@ -45,11 +45,11 @@ weighted avg       0.63      0.62      0.60       990
 Converted all text into lowercase and trimmed leading/trailing whitespace. 
 
 ## 4. How to Run
-+ Import RNN.ipynb into Google Colab
-+ Create a data/ directory
-+ Upload trac2_CONVT_[dev | test | train].csv files
-+ Move csv files into data/
-+ Press Run all
+1. Import RNN.ipynb into Google Colab
+2. Create a data/ directory
+3. Upload trac2_CONVT_[dev | test | train].csv files
+4. Move csv files into data/
+5. Press Run all
 
 # RNN
 ## 1. Implementation (on methods)
@@ -98,8 +98,8 @@ weighted avg       0.62      0.62      0.62      1109
 Converted all text into lowercase and trimmed leading/trailing whitespace. 
 
 ## 4. How to Run
-+ Import RNN.ipynb into Google Colab
-+ Create a data/ directory
-+ Upload trac2_CONVT_[dev | test | train].csv files
-+ Move csv files into data/
-+ Press Run all
+1. Import RNN.ipynb into Google Colab
+2. Create a data/ directory
+3. Upload trac2_CONVT_[dev | test | train].csv files
+4. Move csv files into data/
+5. Press Run all
