@@ -53,7 +53,7 @@ Converted all text into lowercase and trimmed leading/trailing whitespace.
 
 # RNN
 ## 1. Implementation (on methods)
-### Encoding / Feature Engineering
+### Encoding
 A vocabulary is constructed from the training dataset using token frequency counts. Each unique word is assigned a unique integer index, with special tokens for padding (`<PAD> = 0`) and unknown words (`<UNK> = 1`).
 
 Input text is tokenized by splitting on whitespace and converted into sequences of integer IDs. All sequences are padded or truncated to a fixed length of 50 tokens to ensure consistent input size for the model.
@@ -62,9 +62,9 @@ Input text is tokenized by splitting on whitespace and converted into sequences 
 The model is a multi-task bidirectional GRU-based neural network. Input sequences are first passed through an embedding layer (dimension 100), followed by a bidirectional GRU with a hidden size of 128.
 
 The final hidden states from both directions are concatenated and passed through a shared fully connected layer. The network then branches into three output heads:
-- Emotion regression
-- Empathy regression
-- Emotional polarity classification
+- Emotion
+- Empathy
+- Emotional polarity
 
 ### Training Procedure
 The model is trained using the Adam optimizer with a learning rate of 1e-3. A multi-task loss function is used, combining mean squared error for regression tasks and cross-entropy loss for classification.
