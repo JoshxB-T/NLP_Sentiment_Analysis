@@ -11,9 +11,9 @@ The network has two fully connected hidden layers:
 - The second layer reduces the representation to 128 dimensions using another ReLU activation.
 
 The 128-dimensional vector serves as a shared representation. The network then branches into three output heads:
-- Emotion regression
-- Empathy regression
-- Emotional polarity classification
+- Emotion
+- Empathy
+- Emotional polarity
 
 ### Training Procedure
 The model is trained using the Adam optimizer with a learning rate of 1e-3. A multi-task loss function is used, combining mean squared error for regression tasks and cross-entropy loss for classification.
@@ -47,7 +47,8 @@ Converted all text into lowercase and trimmed leading/trailing whitespace.
 ## 4. How to Run
 + Import RNN.ipynb into Google Colab
 + Create a data/ directory
-+ Upload trac2_CONVT_[dev | test | train].csv files and move into data/
++ Upload trac2_CONVT_[dev | test | train].csv files
++ Move csv files into data/
 + Press Run all
 
 # RNN
@@ -68,10 +69,12 @@ The final hidden states from both directions are concatenated and passed through
 ### Training Procedure
 The model is trained using the Adam optimizer with a learning rate of 1e-3. A multi-task loss function is used, combining mean squared error for regression tasks and cross-entropy loss for classification.
 
-Training is performed over 80 epochs with a batch size of 64. The dataset is shuffled during training.
+Training is performed over 40 epochs with a batch size of 64.
+
+computation is disabled to improve efficiency.
 
 ### Evaluation
-Regression performance is measured using Mean Absolute Error (MAE). Classification performance is evaluated using precision, recall, and F1-score.
+Model is set to evaluation mode and gradient computation is disabled to improve efficiency. Similar to the ANN, regression performance is measured using Mean Absolute Error (MAE). Classification performance is evaluated using precision, recall, and F1-score.
 
 ## 2. Results (on dev set)
 ```Bash
@@ -97,5 +100,6 @@ Converted all text into lowercase and trimmed leading/trailing whitespace.
 ## 4. How to Run
 + Import RNN.ipynb into Google Colab
 + Create a data/ directory
-+ Upload trac2_CONVT_[dev | test | train].csv files and move into data/
++ Upload trac2_CONVT_[dev | test | train].csv files
++ Move csv files into data/
 + Press Run all
