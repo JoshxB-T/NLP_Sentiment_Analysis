@@ -1,16 +1,27 @@
 # ANN
 ## 1. Implementation (on methods)
-### Data Loading
-Load dev, train, and test datasets.
+### Feature Engineering
+Text data is transformed into fixed-length numerical feature vectors using a sentence transformer (all-MiniLM-L6-v).
 
-### Preprocessing
-Converted all text into lowercase and trimmed leading/trailing whitespace. 
-
-### Encoding / Feature Engineering
 ### Model Architecture
-### Training Procedure
-### Evaluation
+The ANN is a fully connect feedforward neural network that takes fixed-length feature vectors as input. The size of the input vectors is determined by the size of the feature representation.
 
+The network has two fully connected hidden layers:
+- The first layer maps the input to 256 dimensions, followed by a ReLU activation and a dropout layer (rate = 0.2) for regularization.
+- The second layer reduces the representation to 128 dimensions using another ReLU activation.
+
+The 128-dimensional vector serves as a shared representation. The network then branches into three output heads:
+- Emotion regression
+- Empathy regression
+- Emotional polarity classification
+
+### Training Procedure
+The model is trained using the Adam optimizer with a learning rate of 1e-3. A multi-task loss function is used, combining mean squared error for regression tasks and cross-entropy loss for classification.
+
+Training is performed over 80 epochs with a batch size of 64.
+
+### Evaluation
+Regression performance is measured using Mean Absolute Error (MAE). Classification performance is evaluated using precision, recall, and F1-score.
 
 ## 2. Results (on dev set)
 ```Bash
@@ -31,10 +42,13 @@ weighted avg       0.63      0.62      0.60       990
 ```
 
 ## 3. Notes (preprocessing/model choices)
-
+Converted all text into lowercase and trimmed leading/trailing whitespace. 
 
 ## 4. How to Run
-
++ Import RNN.ipynb into Google Colab
++ Create a data/ directory
++ Upload trac2_CONVT_[dev | test | train].csv files and move into data/
++ Press Run all
 
 # RNN
 ## 1. Implementation (on methods)
@@ -46,10 +60,10 @@ Input text is tokenized by splitting on whitespace and converted into sequences 
 ### Model Architecture
 The model is a multi-task bidirectional GRU-based neural network. Input sequences are first passed through an embedding layer (dimension 100), followed by a bidirectional GRU with a hidden size of 128.
 
-The final hidden states from both directions are concatenated and passed through a shared fully connected layer. The network then branches into three task-specific output heads:
-- Emotion regression (MSE loss)
-- Empathy regression (MSE loss)
-- Emotional polarity classification (CrossEntropy loss)
+The final hidden states from both directions are concatenated and passed through a shared fully connected layer. The network then branches into three output heads:
+- Emotion regression
+- Empathy regression
+- Emotional polarity classification
 
 ### Training Procedure
 The model is trained using the Adam optimizer with a learning rate of 1e-3. A multi-task loss function is used, combining mean squared error for regression tasks and cross-entropy loss for classification.
